@@ -1,0 +1,32 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="v1-1" author="Maxim Yarmol">
+        <createTable tableName="smart_device_spec">
+            <column name="house_spec_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="smart_device_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="v1-2" author="Maxim Yarmol">
+        <addForeignKeyConstraint constraintName="fk_smart_device_spec_house_spec"
+                                 baseTableName="smart_device_spec"
+                                 baseColumnNames="house_spec_id"
+                                 referencedTableName="house_spec"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+    <changeSet id="v1-3" author="Maxim Yarmol">
+        <addForeignKeyConstraint constraintName="fk_smart_device_spec_device"
+                                 baseTableName="smart_device_spec"
+                                 baseColumnNames="smart_device_id"
+                                 referencedTableName="smart_device"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

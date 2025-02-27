@@ -1,0 +1,35 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="v1-1" author="Maxim Yarmol">
+        <createTable tableName="user_spec">
+            <column name="spec_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="v1-2" author="Maxim Yarmol">
+        <addForeignKeyConstraint baseTableName="user_spec"
+                                 baseColumnNames="spec_id"
+                                 referencedTableName="house_spec"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_user_spec_house_spec"/>
+    </changeSet>
+
+    <changeSet id="v1-3" author="Maxim Yarmol">
+        <addForeignKeyConstraint baseTableName="user_spec"
+                                 baseColumnNames="user_id"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_user_spec_user"/>
+    </changeSet>
+
+</databaseChangeLog>
