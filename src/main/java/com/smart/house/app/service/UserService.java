@@ -8,6 +8,7 @@ import com.smart.house.app.entity.SmartDevice;
 import com.smart.house.app.entity.User;
 import com.smart.house.app.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +16,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
+    private final UserRepository userRepository; // узнать зачем тут final и что будет если его убрать
 
     public UserResponseDto getUser(Long id){
         User userEntity = userRepository.findById(id).orElseThrow(() ->
-                new EntityNotFoundException("User not found"));
+                new EntityNotFoundException("User not found")); // сделать свой Exception extends IOException
         return UserResponseDto.builder()
                 .name(userEntity.getName())
                 .phoneNumber(userEntity.getPhoneNumber())
@@ -28,7 +29,7 @@ public class UserService {
 
     public UserResponseDto getUser(String name){
         User userEntity = userRepository.findByName(name).orElseThrow(() ->
-                new EntityNotFoundException("User not found"));
+                new EntityNotFoundException("User not found")); // не кидать тут Runtime
         return UserResponseDto.builder()
                 .name(userEntity.getName())
                 .phoneNumber(userEntity.getPhoneNumber())
@@ -48,7 +49,7 @@ public class UserService {
 
     public UserResponseDto changeUser(UserRequestDto userRequestDto, Long id){
         User userEntity = userRepository.findById(id).orElseThrow(() ->
-                new EntityNotFoundException("User not found"));
+                new EntityNotFoundException("User not found")); // не кидать тут Runtime
         userEntity.setName(userRequestDto.getName());
         userEntity.setPhoneNumber(userRequestDto.getPhoneNumber());
         User result = userRepository.save(userEntity);

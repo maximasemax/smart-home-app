@@ -6,6 +6,7 @@ import com.smart.house.app.dto.user.UserRequestDto;
 import com.smart.house.app.dto.user.UserResponseDto;
 import com.smart.house.app.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,7 +19,7 @@ public class UserControllerImpl implements UserController {
     @GetMapping(value = "name")
     @Override
     public UserResponseDto getUser(String name) {
-        return userService.getUser(name);
+        return userService.getUser(name); // пока закомментить
     }
 
     @GetMapping(value = "id")
@@ -29,13 +30,14 @@ public class UserControllerImpl implements UserController {
 
     @PostMapping
     @Override
-    public UserResponseDto createUser(UserRequestDto userRequestDto) {
+    public UserResponseDto createUser(UserRequestDto userRequestDto) { // обернуть в ResponseEntity
         return userService.createUser(userRequestDto);
     }
 
+    // свой Dto под каждый request и response
     @PutMapping
     @Override
-    public UserResponseDto changeUser(UserRequestDto userRequestDto, Long id) {
+    public UserResponseDto changeUser(UserRequestDto userRequestDto, Long id) { // лучше назвать editUser
         return userService.changeUser(userRequestDto,id);
     }
 

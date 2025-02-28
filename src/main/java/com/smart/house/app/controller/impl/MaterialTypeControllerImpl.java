@@ -1,8 +1,8 @@
 package com.smart.house.app.controller.impl;
 
 import com.smart.house.app.controller.MaterialTypeController;
-import com.smart.house.app.dto.materialType.MaterialTypeRequestDto;
-import com.smart.house.app.dto.materialType.MaterialTypeResponseDto;
+import com.smart.house.app.dto.material_type.MaterialTypeRequestDto;
+import com.smart.house.app.dto.material_type.MaterialTypeResponseDto;
 import com.smart.house.app.service.MaterialTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

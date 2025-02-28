@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserRequestDto     {
-    private String phoneNumber;
+    private String phoneNumber; // попробуй написать валидацию формата через regexp и AOP
 
-    private String name;
+    private String name; // fio
 }

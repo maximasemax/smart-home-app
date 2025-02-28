@@ -1,7 +1,7 @@
 package com.smart.house.app.service;
 
-import com.smart.house.app.dto.materialType.MaterialTypeRequestDto;
-import com.smart.house.app.dto.materialType.MaterialTypeResponseDto;
+import com.smart.house.app.dto.material_type.MaterialTypeRequestDto;
+import com.smart.house.app.dto.material_type.MaterialTypeResponseDto;
 import com.smart.house.app.entity.MaterialType;
 import com.smart.house.app.repository.MaterialTypeRepository;
 import jakarta.persistence.EntityNotFoundException;

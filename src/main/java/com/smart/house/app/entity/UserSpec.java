@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "user_spec")
+@Table(name = "user_spec") // эта сущность не нужна
 public class UserSpec {
 
     @Id

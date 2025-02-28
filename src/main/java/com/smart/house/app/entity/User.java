@@ -7,15 +7,15 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "user") // лучше без явного указания, пусть hibernate сделает сам
+public class User { // почему здесь нельзя lombok builder?
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // изучить, как генерятся уникальные id
     private Long id;
 
     private String phoneNumber;
 
-    private String name;
+    private String name; // fio
 
 }
