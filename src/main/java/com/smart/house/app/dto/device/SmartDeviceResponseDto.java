@@ -9,5 +9,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SmartDeviceResponseDto {
+
     private String name;
+
+
+
+
 }

@@ -1,6 +1,6 @@
 package com.smart.house.app.dto.material;
 
-import lom
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

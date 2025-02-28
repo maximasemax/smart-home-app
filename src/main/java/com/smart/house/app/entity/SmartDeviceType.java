@@ -6,6 +6,8 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "smart_device_type")
+@Getter
+@Setter
 public class SmartDeviceType {
 
     @Setter

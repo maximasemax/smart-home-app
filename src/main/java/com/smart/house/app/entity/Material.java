@@ -24,6 +24,6 @@ public class Material {
     private BigDecimal price;
 
     @OneToMany(mappedBy = "material")
-    private Set<MaterialType> types;
+    private Set<MaterialType> type;
 
 }

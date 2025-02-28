@@ -8,6 +8,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "smart_device")
+@Getter
+@Setter
 public class SmartDevice {
 
     @Setter
@@ -20,11 +22,7 @@ public class SmartDevice {
     @Getter
     private String name;
 
-    @Setter
-    @Getter
-    private String type;
-
     @OneToMany(mappedBy = "smartDevice")
-    private Set<SmartDeviceType> types;
+    private Set<SmartDeviceType> type;
 
 }
