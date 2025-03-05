@@ -11,6 +11,8 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(255)"/>
+            <column name="smart_device_type_id" type="BIGINT"/>
         </createTable>
     </changeSet>
+
 </databaseChangeLog>

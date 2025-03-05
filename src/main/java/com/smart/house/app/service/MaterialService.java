@@ -5,6 +5,7 @@ import com.smart.house.app.dto.material.MaterialRequestDto;
 import com.smart.house.app.dto.material.MaterialResponseDto;
 import com.smart.house.app.entity.Material;
 import com.smart.house.app.repository.MaterialRepository;
+import com.smart.house.app.repository.MaterialTypeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class MaterialService {
 
     private final MaterialRepository materialRepository;
+    private final MaterialTypeRepository materialTypeRepository;
 
     public MaterialResponseDto getMaterial(String name){
         Material materialEntity = materialRepository.findByName(name).orElseThrow(() ->
@@ -31,6 +33,7 @@ public class MaterialService {
         materialEntity.setName(materialRequestDto.getName());
         materialEntity.setDescription(materialRequestDto.getDescription());
         materialEntity.setPrice(materialRequestDto.getPrice());
+        materialEntity.setMaterialType(materialRequestDto.getMaterialType());
         Material result = materialRepository.save(materialEntity);
         return MaterialResponseDto.builder()
                 .name(result.getName())

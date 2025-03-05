@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class HouseSpecRequestDto {
-    private Integer floors; // юзать тип покороче
+    private Byte floors;
 
     private BigDecimal totalCost;
 }

@@ -14,9 +14,5 @@ public class MaterialType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "material_id", nullable = false)
-    private Material material;
-
     private String type;
 }

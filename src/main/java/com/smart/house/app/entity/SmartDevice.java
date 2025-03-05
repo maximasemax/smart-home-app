@@ -22,7 +22,8 @@ public class SmartDevice {
     @Getter
     private String name;
 
-    @OneToMany(mappedBy = "smartDevice")
-    private Set<SmartDeviceType> type;
+    @ManyToOne
+    @JoinColumn(name = "smart_device_type_id")
+    private SmartDeviceType smartDeviceType;
 
 }

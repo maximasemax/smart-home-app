@@ -30,6 +30,7 @@ public class SmartDeviceService {
     public SmartDeviceResponseDto createSmartDevice(SmartDeviceRequestDto smartDeviceRequestDto){
         SmartDevice smartDeviceEntity = new SmartDevice();
         smartDeviceEntity.setName(smartDeviceRequestDto.getName());
+        smartDeviceEntity.setSmartDeviceType(smartDeviceRequestDto.getSmartDeviceType());
         SmartDevice result = deviceRepository.save(smartDeviceEntity);
         return SmartDeviceResponseDto.builder()
                 .name(result.getName())

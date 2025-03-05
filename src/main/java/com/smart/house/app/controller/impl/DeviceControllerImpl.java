@@ -5,6 +5,7 @@ import com.smart.house.app.dto.device.SmartDeviceRequestDto;
 import com.smart.house.app.dto.device.SmartDeviceResponseDto;
 import com.smart.house.app.service.SmartDeviceService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -16,17 +17,17 @@ public class DeviceControllerImpl implements DeviceController {
 
     @GetMapping(value = "name")
     @Override
-    public SmartDeviceResponseDto getSmartDevice(String name) {
-        return smartDeviceService.getSmartDevice(name);
+    public ResponseEntity<SmartDeviceResponseDto> getSmartDevice(@RequestParam String name) {
+        SmartDeviceResponseDto response = smartDeviceService.getSmartDevice(name);
+        return ResponseEntity.ok(response);
     }
-
     @PostMapping
     @Override
     public SmartDeviceResponseDto createSmartDevice(SmartDeviceRequestDto smartDeviceRequestDto) {
         return smartDeviceService.createSmartDevice(smartDeviceRequestDto);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "id")
     @Override
     public void deleteSmartDevice(Long id) {
         smartDeviceService.deleteSmartDevice(id);

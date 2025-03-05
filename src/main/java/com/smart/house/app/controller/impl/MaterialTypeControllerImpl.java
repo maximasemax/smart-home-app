@@ -32,7 +32,7 @@ public class MaterialTypeControllerImpl implements MaterialTypeController {
         return materialTypeService.changeMaterialType(materialTypeRequestDto, id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "id")
     @Override
     public void deleteMaterialType(Long id) {
         materialTypeService.deleteMaterialType(id);

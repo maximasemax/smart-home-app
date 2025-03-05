@@ -39,7 +39,7 @@ public class MaterialControllerImpl implements MaterialController {
         return materialService.changeDescriptionMaterial(id, materialRequestDto);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "id")
     @Override
     public void deleteMaterial(Long id) {
         materialService.deleteMaterial(id);

@@ -23,7 +23,8 @@ public class Material {
 
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "material")
-    private Set<MaterialType> type;
+    @ManyToOne
+    @JoinColumn(name = "material_type_id")
+    private MaterialType materialType;
 
 }

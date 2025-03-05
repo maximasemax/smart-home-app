@@ -10,7 +10,7 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="floors" type="INT"/>
+            <column name="floors" type="SMALLINT"/>
             <column name="material_id" type="BIGINT"/>
             <column name="total_cost" type="DECIMAL(10,2)"/>
             <column name="device_id" type="BIGINT"/>

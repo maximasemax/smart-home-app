@@ -32,7 +32,7 @@ public class SmartDeviceTypeControllerImpl implements SmartDeviceTypeController 
         return smartDeviceTypeService.changeSmartDeviceType(smartDeviceTypeRequestDto, id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "id")
     @Override
     public void deleteSmartDeviceType(Long id) {
         smartDeviceTypeService.deleteSmartDeviceType(id);

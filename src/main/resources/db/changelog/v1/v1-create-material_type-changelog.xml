@@ -7,7 +7,7 @@
 
     <changeSet id="v1-1" author="Maxim Yarmol">
         <createTable tableName="material_type">
-            <column name="material_id" type="BIGINT">
+            <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="type" type="VARCHAR(255)"/>
@@ -15,10 +15,10 @@
     </changeSet>
 
     <changeSet id="v1-2" author="Maxim Yarmol">
-        <addForeignKeyConstraint constraintName="fk_material_type_material"
-                                 baseTableName="material_type"
-                                 baseColumnNames="material_id"
-                                 referencedTableName="material"
+        <addForeignKeyConstraint constraintName="fk_material_material_type"
+                                 baseTableName="material"
+                                 baseColumnNames="material_type_id"
+                                 referencedTableName="material_type"
                                  referencedColumnNames="id"/>
     </changeSet>
 </databaseChangeLog>

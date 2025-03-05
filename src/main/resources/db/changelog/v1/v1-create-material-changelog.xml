@@ -13,6 +13,7 @@
             <column name="name" type="VARCHAR(255)"/>
             <column name="description" type="TEXT"/>
             <column name="price" type="DECIMAL(10,2)"/>
+            <column name="material_type_id" type="BIGINT"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

@@ -41,7 +41,7 @@ public class UserControllerImpl implements UserController {
         return userService.changeUser(userRequestDto,id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "id")
     @Override
     public void deleteUser(Long id) {
         userService.deleteUser(id);

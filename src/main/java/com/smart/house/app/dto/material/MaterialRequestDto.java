@@ -1,5 +1,6 @@
 package com.smart.house.app.dto.material;
 
+import com.smart.house.app.entity.MaterialType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,4 +16,6 @@ public class MaterialRequestDto {
     private String description;
 
     private BigDecimal price;
+
+    private MaterialType materialType;
 }

@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Setter
 public class HouseSpecResponseDto {
 
-    private Integer floors;
+    private Byte floors;
 
     private BigDecimal totalCost;
 }

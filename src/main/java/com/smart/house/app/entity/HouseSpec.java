@@ -18,7 +18,7 @@ public class HouseSpec {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer floors;
+    private Byte floors;
 
     @ManyToOne
     @JoinColumn(name = "material_id", nullable = false)
@@ -30,4 +30,5 @@ public class HouseSpec {
     @OneToMany(mappedBy = "house",cascade = CascadeType.ALL)
     private List<SmartDeviceSpec> smartDeviceSpecs;
 
+    
 }
