@@ -1,5 +1,5 @@
-/*
-package com.smart.house.app.exception;
+
+/*package com.smart.house.app.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,18 +7,19 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class DefaultAdvice {
+public class DefaultAdvice {*/
 
-    @ExceptionHandler(CustomHouseSpecException.class)
+    /*@ExceptionHandler(CustomHouseSpecException.class)
     public ResponseEntity<Response> handleException(CustomHouseSpecException e) {
         Response response = new Response(e.getMessage());
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-    }
-    @ExceptionHandler(CustomMaterialException.class)
+    }*/
+    /*@ExceptionHandler(CustomMaterialException.class)
     public ResponseEntity<Response> handleException(CustomMaterialException e) {
         Response response = new Response(e.getMessage());
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-    }
+    }*/
+    /*
     @ExceptionHandler(CustomMaterialTypeException.class)
     public ResponseEntity<Response> handleException(CustomMaterialTypeException e) {
         Response response = new Response(e.getMessage());
@@ -39,5 +40,7 @@ public class DefaultAdvice {
         Response response = new Response(e.getMessage());
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
+    }
+    */
 
-}*/
+

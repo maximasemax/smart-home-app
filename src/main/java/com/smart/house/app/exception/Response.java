@@ -1,4 +1,3 @@
-/*
 package com.smart.house.app.exception;
 
 public class Response {
@@ -21,4 +20,3 @@ public class Response {
     }
 
 }
-*/
