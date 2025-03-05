@@ -30,6 +30,7 @@ public class HouseSpecControllerImpl implements HouseSpecController {
     @Override
     public HouseSpecResponseDto changeHouseSpec(HouseSpecRequestDto houseSpecRequestDto, Long id) throws CustomEntityNotFoundException {
         return houseSpecService.changeHouseSpec(houseSpecRequestDto, id);
+
     }
 
     @DeleteMapping(value = "id")
