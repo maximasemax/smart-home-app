@@ -10,7 +10,4 @@ import lombok.Setter;
 public class SmartDeviceTypeRequestDto {
 
     private String type;
-
-
-
 }

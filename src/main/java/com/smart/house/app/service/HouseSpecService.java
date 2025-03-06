@@ -27,8 +27,6 @@ public class HouseSpecService {
         } else {
             throw new CustomEntityNotFoundException("House not found");
         }
-
-
     }
 
     public HouseSpecResponseDto changeHouseSpec(HouseSpecRequestDto houseSpecRequestDto, Long id) throws CustomEntityNotFoundException {
@@ -47,7 +45,7 @@ public class HouseSpecService {
         }
     }
 
-    public HouseSpecResponseDto createHouseSpec(HouseSpecRequestDto houseSpecRequestDto){
+    public HouseSpecResponseDto createHouseSpec(HouseSpecRequestDto houseSpecRequestDto) {
         HouseSpec houseSpecEntity = new HouseSpec();
         houseSpecEntity.setFloors(houseSpecRequestDto.getFloors());
         houseSpecEntity.setTotalCost(houseSpecRequestDto.getTotalCost());
@@ -58,8 +56,14 @@ public class HouseSpecService {
                 .build();
     }
 
-    public void deleteHouseSpec(Long id){
-        houseSpecRepository.deleteById(id);
+    public void deleteHouseSpec(Long id) throws CustomEntityNotFoundException {
+        Optional<HouseSpec> houseSpecOptional = houseSpecRepository.findById(id);
+        if (houseSpecOptional.isPresent()) {
+            HouseSpec houseSpecEntity = houseSpecOptional.get();
+            houseSpecRepository.delete(houseSpecEntity);
+        } else {
+            throw new CustomEntityNotFoundException("House not found");
+        }
     }
 
 }

@@ -4,6 +4,7 @@ import com.smart.house.app.controller.DeviceController;
 import com.smart.house.app.dto.HouseSpec.HouseSpecResponseDto;
 import com.smart.house.app.dto.device.SmartDeviceRequestDto;
 import com.smart.house.app.dto.device.SmartDeviceResponseDto;
+import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.service.SmartDeviceService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -49,7 +50,7 @@ public class DeviceControllerImpl implements DeviceController {
 
     @DeleteMapping(value = "id")
     @Override
-    public void deleteSmartDevice(Long id) {
+    public void deleteSmartDevice(Long id) throws CustomEntityNotFoundException {
         smartDeviceService.deleteSmartDevice(id);
     }
 }

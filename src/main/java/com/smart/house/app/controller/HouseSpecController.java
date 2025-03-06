@@ -11,7 +11,8 @@ public interface HouseSpecController {
 
     ResponseEntity<?> createHouseSpec(HouseSpecRequestDto houseSpecRequestDto);
 
-    ResponseEntity<?> changeHouseSpec(HouseSpecRequestDto houseSpecRequestDto, Long id) throws CustomEntityNotFoundException;
+    ResponseEntity<?> changeHouseSpec(HouseSpecRequestDto houseSpecRequestDto, Long id)
+            throws CustomEntityNotFoundException;
 
-    void deleteHouseSpec(Long id);
+    void deleteHouseSpec(Long id) throws CustomEntityNotFoundException;
 }

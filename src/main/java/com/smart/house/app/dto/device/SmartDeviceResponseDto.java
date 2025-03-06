@@ -14,7 +14,4 @@ public class SmartDeviceResponseDto {
     private String name;
 
     private SmartDeviceType smartDeviceType;
-
-
-
 }

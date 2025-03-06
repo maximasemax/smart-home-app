@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class HouseSpecRequestDto {
+
     private Byte floors;
 
     private BigDecimal totalCost;

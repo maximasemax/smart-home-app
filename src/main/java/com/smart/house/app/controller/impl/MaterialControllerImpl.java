@@ -4,6 +4,7 @@ package com.smart.house.app.controller.impl;
 import com.smart.house.app.controller.MaterialController;
 import com.smart.house.app.dto.material.MaterialRequestDto;
 import com.smart.house.app.dto.material.MaterialResponseDto;
+import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.exception.CustomMaterialException;
 import com.smart.house.app.service.MaterialService;
 import jakarta.persistence.EntityNotFoundException;
@@ -84,7 +85,7 @@ public class MaterialControllerImpl implements MaterialController {
 
     @DeleteMapping(value = "id")
     @Override
-    public void deleteMaterial(Long id) {
+    public void deleteMaterial(Long id) throws CustomEntityNotFoundException {
         materialService.deleteMaterial(id);
     }
 

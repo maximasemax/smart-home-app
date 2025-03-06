@@ -29,11 +29,9 @@ public class MaterialService {
                     .description(materialEntity.getDescription())
                     .materialType(materialEntity.getMaterialType())
                     .build();
+        } else {
+            throw new CustomEntityNotFoundException("Material not found");
         }
-        else {
-            throw new CustomEntityNotFoundException("Material not foud");
-        }
-
     }
 
     public MaterialResponseDto createMaterial(MaterialRequestDto materialRequestDto) {
@@ -51,38 +49,48 @@ public class MaterialService {
                 .build();
     }
 
-    public MaterialResponseDto changePriceMaterial(Long id, MaterialRequestDto materialRequestDto) {
+    public MaterialResponseDto changePriceMaterial(Long id, MaterialRequestDto materialRequestDto) throws CustomEntityNotFoundException {
         Optional<Material> materialEntityOptional = materialRepository.findById(id);
-        Material materialEntity = materialEntityOptional.get();
-        materialEntity.setPrice(materialRequestDto.getPrice());
-        Material result = materialRepository.save(materialEntity);
-        return MaterialResponseDto.builder()
-                .name(result.getName())
-                .description(result.getDescription())
-                .price(result.getPrice())
-                .materialType(materialEntity.getMaterialType())
-                .build();
+        if (materialEntityOptional.isPresent()) {
+            Material materialEntity = materialEntityOptional.get();
+            materialEntity.setPrice(materialRequestDto.getPrice());
+            Material result = materialRepository.save(materialEntity);
+            return MaterialResponseDto.builder()
+                    .price(materialEntity.getPrice())
+                    .name(materialEntity.getName())
+                    .description(materialEntity.getDescription())
+                    .materialType(materialEntity.getMaterialType())
+                    .build();
+        } else {
+            throw new CustomEntityNotFoundException("Material not found");
+        }
 
     }
 
-    public MaterialResponseDto changeDescriptionMaterial(Long id, MaterialRequestDto materialRequestDto) {
+    public MaterialResponseDto changeDescriptionMaterial(Long id, MaterialRequestDto materialRequestDto) throws CustomEntityNotFoundException {
         Optional<Material> materialEntityOptional = materialRepository.findById(id);
-        Material materialEntity = materialEntityOptional.get();
-        materialEntity.setDescription(materialRequestDto.getDescription());
-        Material result = materialRepository.save(materialEntity);
-        return MaterialResponseDto.builder()
-                .name(result.getName())
-                .description(result.getDescription())
-                .price(result.getPrice())
-                .materialType(materialEntity.getMaterialType())
-                .build();
-
+        if (materialEntityOptional.isPresent()) {
+            Material materialEntity = materialEntityOptional.get();
+            materialEntity.setDescription(materialRequestDto.getDescription());
+            Material result = materialRepository.save(materialEntity);
+            return MaterialResponseDto.builder()
+                    .name(result.getName())
+                    .description(result.getDescription())
+                    .price(result.getPrice())
+                    .materialType(materialEntity.getMaterialType())
+                    .build();
+        } else {
+            throw new CustomEntityNotFoundException("Material not found");
+        }
     }
 
-    public void deleteMaterial(Long id) {
+    public void deleteMaterial(Long id) throws CustomEntityNotFoundException {
         Optional<Material> materialEntityOptional = materialRepository.findById(id);
-        Material materialEntity = materialEntityOptional.get();
-        materialRepository.delete(materialEntity);
+        if (materialEntityOptional.isPresent()) {
+            Material materialEntity = materialEntityOptional.get();
+            materialRepository.delete(materialEntity);
+        } else {
+            throw new CustomEntityNotFoundException("Material not found");
+        }
     }
-
 }

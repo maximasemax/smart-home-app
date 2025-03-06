@@ -5,6 +5,7 @@ import com.smart.house.app.dto.material.MaterialRequestDto;
 import com.smart.house.app.dto.smartDeviceType.SmartDeviceTypeResponseDto;
 import com.smart.house.app.dto.user.UserRequestDto;
 import com.smart.house.app.dto.user.UserResponseDto;
+import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class UserControllerImpl implements UserController {
 
     private final UserService userService;
 
-    @GetMapping(value = "name")
+    /*@GetMapping(value = "name")
     @Override
     public ResponseEntity<?> getUser(String name) {
          // пока закомментить
@@ -34,7 +35,7 @@ public class UserControllerImpl implements UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
+*/
     @GetMapping(value = "id")
     @Override
     public ResponseEntity<?> getUser(Long id) {
@@ -84,7 +85,7 @@ public class UserControllerImpl implements UserController {
 
     @DeleteMapping(value = "id")
     @Override
-    public void deleteUser(Long id) {
+    public void deleteUser(Long id) throws CustomEntityNotFoundException {
         userService.deleteUser(id);
     }
 }

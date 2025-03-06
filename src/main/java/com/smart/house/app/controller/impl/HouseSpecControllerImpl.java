@@ -66,7 +66,7 @@ public class HouseSpecControllerImpl implements HouseSpecController {
 
     @DeleteMapping(value = "id")
     @Override
-    public void deleteHouseSpec(Long id) {
+    public void deleteHouseSpec(Long id) throws CustomEntityNotFoundException {
         houseSpecService.deleteHouseSpec(id);
     }
 }
