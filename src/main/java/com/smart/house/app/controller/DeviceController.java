@@ -8,9 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
 public interface DeviceController {
-    ResponseEntity<SmartDeviceResponseDto> getSmartDevice(String name);
+    ResponseEntity<?> getSmartDevice(String name);
 
-    SmartDeviceResponseDto createSmartDevice(@RequestBody SmartDeviceRequestDto smartDeviceRequestDto);
+    ResponseEntity<?> createSmartDevice(@RequestBody SmartDeviceRequestDto smartDeviceRequestDto);
 
     void deleteSmartDevice(Long id);
 }

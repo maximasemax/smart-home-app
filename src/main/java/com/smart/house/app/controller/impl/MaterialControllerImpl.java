@@ -54,14 +54,32 @@ public class MaterialControllerImpl implements MaterialController {
 
     @PutMapping(value = "change_cost")
     @Override
-    public MaterialResponseDto changeCostMaterial(MaterialRequestDto materialRequestDto, Long id) {
-        return materialService.changePriceMaterial(id, materialRequestDto);
+    public ResponseEntity<?> changeCostMaterial(MaterialRequestDto materialRequestDto, Long id) {
+        try {
+            MaterialResponseDto response = materialService.changePriceMaterial(id, materialRequestDto);
+            return ResponseEntity.ok(response);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PutMapping(value = "change_description")
     @Override
-    public MaterialResponseDto changeDescriptionMaterial(MaterialRequestDto materialRequestDto, Long id) {
-        return materialService.changeDescriptionMaterial(id, materialRequestDto);
+    public ResponseEntity<?> changeDescriptionMaterial(MaterialRequestDto materialRequestDto, Long id) {
+        try {
+            MaterialResponseDto response = materialService.changeDescriptionMaterial(id, materialRequestDto);
+            return ResponseEntity.ok(response);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @DeleteMapping(value = "id")

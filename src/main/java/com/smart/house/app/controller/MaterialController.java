@@ -14,9 +14,9 @@ public interface MaterialController {
 
     ResponseEntity<?> createMaterial(@RequestBody MaterialRequestDto materialRequestDto);
 
-    MaterialResponseDto changeCostMaterial(@RequestBody MaterialRequestDto materialRequestDto, Long id);
+    ResponseEntity<?> changeCostMaterial(@RequestBody MaterialRequestDto materialRequestDto, Long id);
 
-    MaterialResponseDto changeDescriptionMaterial(@RequestBody MaterialRequestDto materialRequestDto, Long id);
+    ResponseEntity<?> changeDescriptionMaterial(@RequestBody MaterialRequestDto materialRequestDto, Long id);
 
     void deleteMaterial(Long id);
 }
