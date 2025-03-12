@@ -11,5 +11,5 @@ import lombok.Setter;
 public class UserRequestDto     {
     private String phoneNumber; // попробуй написать валидацию формата через regexp и AOP
 
-    private String name; // fio
+    private String fio; // fio
 }

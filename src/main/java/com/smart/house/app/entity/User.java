@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "user") // лучше без явного указания, пусть hibernate сделает сам
+@Table(name = "app_user") // лучше без явного указания, пусть hibernate сделает сам
 public class User { // почему здесь нельзя lombok builder?
 
     @Id
@@ -16,6 +16,6 @@ public class User { // почему здесь нельзя lombok builder?
 
     private String phoneNumber;
 
-    private String name; // fio
+    private String fio; // fio
 
 }

@@ -1,15 +1,10 @@
 package com.smart.house.app.service;
 
-import com.smart.house.app.dto.device.SmartDeviceRequestDto;
-import com.smart.house.app.dto.device.SmartDeviceResponseDto;
 import com.smart.house.app.dto.user.UserRequestDto;
 import com.smart.house.app.dto.user.UserResponseDto;
-import com.smart.house.app.entity.SmartDevice;
 import com.smart.house.app.entity.User;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +21,7 @@ public class UserService {
         if (userOptional.isPresent()) {
             User userEntity = userOptional.get();
             return UserResponseDto.builder()
-                    .name(userEntity.getName())
+                    .fio(userEntity.getFio())
                     .phoneNumber(userEntity.getPhoneNumber())
                     .build();
         } else {
@@ -45,12 +40,12 @@ public class UserService {
 
     public UserResponseDto createUser(UserRequestDto userRequestDto) {
         User userEntity = new User();
-        userEntity.setName(userRequestDto.getName());
+        userEntity.setFio(userRequestDto.getFio());
         userEntity.setPhoneNumber(userRequestDto.getPhoneNumber());
         User result = userRepository.save(userEntity);
         return UserResponseDto.builder()
                 .phoneNumber(result.getPhoneNumber())
-                .name(result.getName())
+                .fio(result.getFio())
                 .build();
     }
 
@@ -58,12 +53,12 @@ public class UserService {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             User userEntity = userOptional.get();
-            userEntity.setName(userRequestDto.getName());
+            userEntity.setFio(userRequestDto.getFio());
             userEntity.setPhoneNumber(userRequestDto.getPhoneNumber());
             User result = userRepository.save(userEntity);
             return UserResponseDto.builder()
                     .phoneNumber(result.getPhoneNumber())
-                    .name(result.getName())
+                    .fio(result.getFio())
                     .build();
         } else {
             throw new CustomEntityNotFoundException("User not found");

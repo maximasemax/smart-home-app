@@ -6,12 +6,12 @@
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
     <changeSet id="v1-1" author="Maxim Yarmol">
-    <createTable tableName="user">
+    <createTable tableName="app_user">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="phone_number" type="VARCHAR(20)"/>
-            <column name="name" type="VARCHAR(255)"/>
+            <column name="FIO" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>
