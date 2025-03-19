@@ -8,6 +8,7 @@ Using Docker Compose:
    docker-compose down
 
 Environment Variables:
+
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
