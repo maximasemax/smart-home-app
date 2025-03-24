@@ -8,13 +8,17 @@ import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.service.MaterialTypeService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/material-type")
+@Log4j2
 public class MaterialTypeControllerImpl implements MaterialTypeController {
 
     private final MaterialTypeService materialTypeService;
@@ -22,45 +26,68 @@ public class MaterialTypeControllerImpl implements MaterialTypeController {
     @GetMapping(value = "id")
     @Override
     public ResponseEntity<?> getMaterialType(Long id) {
+        log.info("Получен запрос на получение типа материала с ID: {}", id);
         try {
+            log.info("Поиск типа материала с ID: {}", id);
             MaterialTypeResponseDto response = materialTypeService.getMaterialType(id);
+            log.info("Отправка ответа по типу материала с ID: {}", id);
             return ResponseEntity.ok(response);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (CustomEntityNotFoundException e) {
+            log.info("Не найден тип материала с ID: {}: {}", id, e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("error", "Material type not found", "message", e.getMessage()));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            log.info("Некорректный ID: {}: {}", id, e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", "Invalid request", "message", e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            log.error("Ошибка при получении типа материала с ID {}: {}", id, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Internal server error", "message", e.getMessage()));
         }
     }
 
     @PostMapping
     @Override
     public ResponseEntity<?> createMaterialType(MaterialTypeRequestDto materialTypeRequestDto) {
+        log.info("Получен запрос на создание типа материала");
         try {
+            log.info("Создание типа материала");
             MaterialTypeResponseDto response = materialTypeService.createMaterialType(materialTypeRequestDto);
+            log.info("Отправка ответа по типу материала");
             return ResponseEntity.ok(response);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            log.info("Некорректные данные: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", "Invalid request", "message", e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            log.error("Ошибка при создании типа материала: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Internal server error", "message", e.getMessage()));
         }
     }
 
     @PutMapping
     @Override
-    public ResponseEntity<?> changeMaterialType(MaterialTypeRequestDto materialTypeRequestDto, Long id) {
+    public ResponseEntity<?> editMaterialType(MaterialTypeRequestDto materialTypeRequestDto, Long id) {
+        log.info("Получен запрос на изменение типа материала с ID: {}", id);
         try {
+            log.info("Изменение типа материала с ID: {}", id);
             MaterialTypeResponseDto response = materialTypeService.changeMaterialType(materialTypeRequestDto, id);
+            log.info("Отправка ответа по типу материала с ID: {}", id);
             return ResponseEntity.ok(response);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (CustomEntityNotFoundException e) {
+            log.info("Не найден тип материала с ID: {}: {}", id, e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("error", "Material type not found", "message", e.getMessage()));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            log.info("Некорректные данные ID: {}: {}", id, e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", "Invalid request", "message", e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            log.error("Ошибка при изменении типа материала с ID {}: {}", id, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Internal server error", "message", e.getMessage()));
         }
     }
 

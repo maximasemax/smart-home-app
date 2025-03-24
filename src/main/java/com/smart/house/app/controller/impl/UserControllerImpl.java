@@ -7,14 +7,18 @@ import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
+@Log4j2
 public class UserControllerImpl implements UserController {
 
     private final UserService userService;
@@ -38,30 +42,44 @@ public class UserControllerImpl implements UserController {
     */
     @GetMapping(value = "id")
     @Override
-    public ResponseEntity<?> getUser(Long id) {
+    public ResponseEntity<?> getUser(@RequestParam Long id) {
+        log.info("Получен запрос на получение пользователя с ID: {}", id);
         try {
+            log.info("Поиск пользователя с ID: {}", id);
             UserResponseDto response = userService.getUser(id);
+            log.info("Отправка ответа по пользователю с ID: {}", id);
             return ResponseEntity.ok(response);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(NOT_FOUND).build();
+        } catch (CustomEntityNotFoundException e) {
+            log.info("Не найден пользователь с ID: {}: {}", id, e.getMessage());
+            return ResponseEntity.status(NOT_FOUND)
+                    .body(Map.of("error", "User not found", "message", e.getMessage()));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(BAD_REQUEST).build();
+            log.info("Не правильный тип данных ID : {} :{}", id, e.getMessage());
+            return ResponseEntity.status(BAD_REQUEST)
+                    .body(Map.of("error", "Invalid request", "message", e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(INTERNAL_SERVER_ERROR).build();
+            log.error("Ошибка при получении пользователя с ID {}: {}", id, e.getMessage());
+            return ResponseEntity.status(INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Internal server error", "message", e.getMessage()));
         }
     }
+
 
     @PostMapping
     @Override
     public ResponseEntity<?> createUser(UserRequestDto userRequestDto) {
+        log.info("Получен запрос на создание пользователя ");
         try {
+            log.info("Создание пользователя");
             UserResponseDto response = userService.createUser(userRequestDto);
+            log.info("Отправка ответа по пользователю");
             return ResponseEntity.ok(response);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(NOT_FOUND).build();
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(BAD_REQUEST).build();
+            log.info("Не правильный тип данных ID :{}", e.getMessage());
+            return ResponseEntity.status(BAD_REQUEST)
+                    .body(Map.of("error", "Invalid request", "message", e.getMessage()));
         } catch (Exception e) {
+            log.error("Ошибка при получении пользователя с ID : {}", e.getMessage());
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -69,16 +87,25 @@ public class UserControllerImpl implements UserController {
     // свой Dto под каждый request и response
     @PutMapping
     @Override
-    public ResponseEntity<?> changeUser(UserRequestDto userRequestDto, Long id) { // лучше назвать editUser
+    public ResponseEntity<?> editUser(UserRequestDto userRequestDto, Long id) { // лучше назвать editUser
+        log.info("Получен запрос на изменение пользователя ");
         try {
+            log.info("Изменение пользовател");
             UserResponseDto response = userService.changeUser(userRequestDto,id);
+            log.info("Отправка ответа по изменению пользователю");
             return ResponseEntity.ok(response);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(NOT_FOUND).build();
+        } catch (CustomEntityNotFoundException e) {
+            log.info("Не найден пользователь с ID: {}: {}", id, e.getMessage());
+            return ResponseEntity.status(NOT_FOUND)
+                    .body(Map.of("error", "User not found", "message", e.getMessage()));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(BAD_REQUEST).build();
+            log.info("Не правильный тип данных ID : {} :{}", id, e.getMessage());
+            return ResponseEntity.status(BAD_REQUEST)
+                    .body(Map.of("error", "Invalid request", "message", e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(INTERNAL_SERVER_ERROR).build();
+            log.error("Ошибка при получении пользователя с ID {}: {}", id, e.getMessage());
+            return ResponseEntity.status(INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Invalid request", "message", e.getMessage()));
         }
 
     }

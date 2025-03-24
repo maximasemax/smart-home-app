@@ -8,10 +8,14 @@ import com.smart.house.app.exception.CustomEntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 public interface DeviceController {
     ResponseEntity<?> getSmartDevice(String name);
 
     ResponseEntity<?> createSmartDevice(@RequestBody SmartDeviceRequestDto smartDeviceRequestDto);
+
+
 
     void deleteSmartDevice(Long id) throws CustomEntityNotFoundException;
 }

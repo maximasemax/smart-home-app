@@ -7,7 +7,7 @@
 
     <changeSet id="v1-1" author="Maxim Yarmol">
         <createTable tableName="smart_device_type">
-            <column name="id" type="BIGINT">
+            <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="type" type="VARCHAR(255)"/>

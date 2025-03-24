@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/smart-device")
@@ -25,12 +27,15 @@ public class DeviceControllerImpl implements DeviceController {
         try {
             SmartDeviceResponseDto response = smartDeviceService.getSmartDevice(name);
             return ResponseEntity.ok(response);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (CustomEntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("error", "Smart device not found", "message", e.getMessage()));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", "Invalid request", "message", e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Internal server error", "message", e.getMessage()));
         }
     }
     @PostMapping
@@ -39,12 +44,12 @@ public class DeviceControllerImpl implements DeviceController {
         try {
             SmartDeviceResponseDto response = smartDeviceService.createSmartDevice(smartDeviceRequestDto);
             return ResponseEntity.ok(response);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", "Invalid request", "message", e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Internal server error", "message", e.getMessage()));
         }
     }
 
