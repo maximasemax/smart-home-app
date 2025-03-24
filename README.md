@@ -16,3 +16,6 @@ DB_PASSWORD=postgres
 
 Swagger:
 http://localhost:8080/swagger-ui/index.html
+
+Logs:
+smart-home-app\logs
