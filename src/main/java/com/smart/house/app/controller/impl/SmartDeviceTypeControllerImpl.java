@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -88,6 +89,19 @@ public class SmartDeviceTypeControllerImpl implements SmartDeviceTypeController 
                     .body(Map.of("error", "Invalid request", "message", e.getMessage()));
         } catch (Exception e) {
             log.error("Ошибка при получении устройства с ID {}: {}", id, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Internal server error", "message", e.getMessage()));
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAllSmartDeviceTypes() {
+        log.info("Получен запрос на получение всех типов устройств");
+        try {
+            List<SmartDeviceTypeResponseDto> responseList = smartDeviceTypeService.getAllSmartDeviceTypes();
+            return ResponseEntity.ok(responseList);
+        } catch (Exception e) {
+            log.error("Ошибка при получении : {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("error", "Internal server error", "message", e.getMessage()));
         }

@@ -1,23 +1,31 @@
 package com.smart.house.app.service;
 
 
+import com.smart.house.app.dto.device.SmartDeviceResponseDto;
 import com.smart.house.app.dto.material.MaterialRequestDto;
 import com.smart.house.app.dto.material.MaterialResponseDto;
 import com.smart.house.app.entity.Material;
+import com.smart.house.app.entity.SmartDevice;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
+import com.smart.house.app.mapper.MaterialMapper;
 import com.smart.house.app.repository.MaterialRepository;
 import com.smart.house.app.repository.MaterialTypeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class MaterialService {
 
     private final MaterialRepository materialRepository;
+    private final MaterialMapper materialMapper;
 
     public MaterialResponseDto getMaterial(String name) throws CustomEntityNotFoundException {
         Optional<Material> materialEntityOptional = materialRepository.findByName(name);
@@ -92,5 +100,14 @@ public class MaterialService {
         } else {
             throw new CustomEntityNotFoundException("Material not found");
         }
+    }
+
+    public List<MaterialResponseDto> getAllMaterials() {
+        log.info("Попытка сходить в базу");
+        List<Material> materialList = materialRepository.findAll();
+        log.info("Попытка маппинга");
+        return materialList.stream()
+                .map(materialMapper::toDto)
+                .collect(Collectors.toList());
     }
 }

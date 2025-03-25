@@ -13,5 +13,7 @@ public interface MaterialTypeController {
 
     ResponseEntity<?> editMaterialType(@RequestBody MaterialTypeRequestDto materialTypeRequestDto, Long id);
 
+    ResponseEntity<?> getAllMaterialTypes();
+
     void deleteMaterialType(Long id) throws CustomEntityNotFoundException;
 }

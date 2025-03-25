@@ -2,8 +2,10 @@ package com.smart.house.app.controller.impl;
 
 import com.smart.house.app.controller.MaterialTypeController;
 import com.smart.house.app.dto.device.SmartDeviceResponseDto;
+import com.smart.house.app.dto.material.MaterialResponseDto;
 import com.smart.house.app.dto.material_type.MaterialTypeRequestDto;
 import com.smart.house.app.dto.material_type.MaterialTypeResponseDto;
+import com.smart.house.app.entity.MaterialType;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.service.MaterialTypeService;
 import jakarta.persistence.EntityNotFoundException;
@@ -13,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -86,6 +89,19 @@ public class MaterialTypeControllerImpl implements MaterialTypeController {
                     .body(Map.of("error", "Invalid request", "message", e.getMessage()));
         } catch (Exception e) {
             log.error("Ошибка при изменении типа материала с ID {}: {}", id, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Internal server error", "message", e.getMessage()));
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> getAllMaterialTypes() {
+        log.info("Получен запрос на получение всех типов материалов");
+        try {
+            List<MaterialTypeResponseDto> responseList = materialTypeService.getAllMaterialTypes();
+            return ResponseEntity.ok(responseList);
+        } catch (Exception e) {
+            log.error("Ошибка при получении : {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("error", "Internal server error", "message", e.getMessage()));
         }

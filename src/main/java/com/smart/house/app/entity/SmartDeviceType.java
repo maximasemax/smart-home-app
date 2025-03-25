@@ -8,11 +8,13 @@ import lombok.Setter;
 @Entity
 @Getter
 @Table(name = "smart_device_type")
+
 public class SmartDeviceType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     private String type;
 

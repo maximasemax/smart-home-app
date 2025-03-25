@@ -4,22 +4,26 @@ package com.smart.house.app.controller.impl;
 import com.smart.house.app.controller.MaterialController;
 import com.smart.house.app.dto.material.MaterialRequestDto;
 import com.smart.house.app.dto.material.MaterialResponseDto;
+import com.smart.house.app.dto.smartDeviceType.SmartDeviceTypeResponseDto;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.exception.CustomMaterialException;
 import com.smart.house.app.service.MaterialService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/material")
+@Log4j2
 public class MaterialControllerImpl implements MaterialController {
 
     private final MaterialService materialService;
@@ -88,6 +92,19 @@ public class MaterialControllerImpl implements MaterialController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(Map.of("error", "Invalid request", "message", e.getMessage()));
         } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Internal server error", "message", e.getMessage()));
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> getAllMaterials() {
+        log.info("Получен запрос на получение всех материалов");
+        try {
+            List<MaterialResponseDto> responseList = materialService.getAllMaterials();
+            return ResponseEntity.ok(responseList);
+        } catch (Exception e) {
+            log.error("Ошибка при получении : {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("error", "Internal server error", "message", e.getMessage()));
         }

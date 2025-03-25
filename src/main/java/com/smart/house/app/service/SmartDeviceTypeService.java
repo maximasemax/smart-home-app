@@ -4,17 +4,27 @@ import com.smart.house.app.dto.smartDeviceType.SmartDeviceTypeRequestDto;
 import com.smart.house.app.dto.smartDeviceType.SmartDeviceTypeResponseDto;
 import com.smart.house.app.entity.SmartDeviceType;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
+
+
+import com.smart.house.app.mapper.SmartDeviceTypeMapper;
 import com.smart.house.app.repository.SmartDeviceTypeRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class SmartDeviceTypeService {
 
     private final SmartDeviceTypeRepository smartDeviceTypeRepository;
+    private final SmartDeviceTypeMapper smartDeviceTypeMapper;
+
 
     public SmartDeviceTypeResponseDto getSmartDeviceType(Long id) throws CustomEntityNotFoundException {
         Optional<SmartDeviceType> smartDeviceTypeOptional = smartDeviceTypeRepository.findById(id);
@@ -60,6 +70,15 @@ public class SmartDeviceTypeService {
         } else {
             throw new CustomEntityNotFoundException("Smart device type not found");
         }
+    }
+
+    public List<SmartDeviceTypeResponseDto> getAllSmartDeviceTypes() {
+        log.info("Попытка сходить в базу");
+        List<SmartDeviceType> smartDeviceTypeLists = smartDeviceTypeRepository.findAll();
+        log.info("Попытка маппинга");
+        return smartDeviceTypeLists.stream()
+                .map(smartDeviceTypeMapper::toDto)
+                .collect(Collectors.toList());
     }
 }
 
