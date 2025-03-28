@@ -1,4 +1,4 @@
-package com.smart.house.app.dto.smartDeviceType;
+package com.smart.house.app.dto.smartDeviceType.request;
 
 import lombok.*;
 

@@ -11,3 +11,5 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 CMD ["java", "-jar", "target/smart-home-app-0.0.1-SNAPSHOT.jar"]
+
+VOLUME /app/logs

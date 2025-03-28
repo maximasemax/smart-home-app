@@ -1,6 +1,6 @@
 package com.smart.house.app.controller;
 
-import com.smart.house.app.dto.material.MaterialRequestDto;
+import com.smart.house.app.dto.material.request.MaterialRequestDto;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.exception.CustomMaterialException;
 import org.springframework.http.ResponseEntity;

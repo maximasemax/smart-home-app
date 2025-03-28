@@ -1,7 +1,7 @@
 package com.smart.house.app.service;
 
-import com.smart.house.app.dto.smartDeviceType.SmartDeviceTypeRequestDto;
-import com.smart.house.app.dto.smartDeviceType.SmartDeviceTypeResponseDto;
+import com.smart.house.app.dto.smartDeviceType.request.SmartDeviceTypeRequestDto;
+import com.smart.house.app.dto.smartDeviceType.response.SmartDeviceTypeResponseDto;
 import com.smart.house.app.entity.SmartDeviceType;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
 
@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

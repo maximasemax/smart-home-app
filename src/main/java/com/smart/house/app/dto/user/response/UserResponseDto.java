@@ -1,4 +1,4 @@
-package com.smart.house.app.dto.user;
+package com.smart.house.app.dto.user.response;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,14 +1,11 @@
 package com.smart.house.app.service;
 
-import com.smart.house.app.dto.material.MaterialResponseDto;
-import com.smart.house.app.dto.material_type.MaterialTypeRequestDto;
-import com.smart.house.app.dto.material_type.MaterialTypeResponseDto;
-import com.smart.house.app.entity.Material;
+import com.smart.house.app.dto.material_type.request.MaterialTypeRequestDto;
+import com.smart.house.app.dto.material_type.response.MaterialTypeResponseDto;
 import com.smart.house.app.entity.MaterialType;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.mapper.MaterialTypeMapper;
 import com.smart.house.app.repository.MaterialTypeRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;

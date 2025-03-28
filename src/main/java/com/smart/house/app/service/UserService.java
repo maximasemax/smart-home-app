@@ -1,7 +1,7 @@
 package com.smart.house.app.service;
 
-import com.smart.house.app.dto.user.UserRequestDto;
-import com.smart.house.app.dto.user.UserResponseDto;
+import com.smart.house.app.dto.user.request.UserRequestDto;
+import com.smart.house.app.dto.user.response.UserResponseDto;
 import com.smart.house.app.entity.User;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.repository.UserRepository;

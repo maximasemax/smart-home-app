@@ -1,6 +1,6 @@
 package com.smart.house.app.controller;
 
-import com.smart.house.app.dto.user.UserRequestDto;
+import com.smart.house.app.dto.user.request.UserRequestDto;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;

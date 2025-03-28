@@ -1,18 +1,11 @@
 package com.smart.house.app.service;
 
-import com.smart.house.app.dto.device.SmartDeviceRequestDto;
-import com.smart.house.app.dto.device.SmartDeviceResponseDto;
-import com.smart.house.app.dto.material.MaterialRequestDto;
-import com.smart.house.app.dto.material.MaterialResponseDto;
-import com.smart.house.app.dto.smartDeviceType.SmartDeviceTypeResponseDto;
-import com.smart.house.app.entity.Material;
+import com.smart.house.app.dto.device.request.SmartDeviceRequestDto;
+import com.smart.house.app.dto.device.response.SmartDeviceResponseDto;
 import com.smart.house.app.entity.SmartDevice;
-import com.smart.house.app.entity.SmartDeviceType;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.mapper.SmartDeviceMapper;
-import com.smart.house.app.mapper.SmartDeviceTypeMapper;
 import com.smart.house.app.repository.DeviceRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;

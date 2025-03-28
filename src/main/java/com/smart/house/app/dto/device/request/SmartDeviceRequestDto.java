@@ -1,4 +1,4 @@
-package com.smart.house.app.dto.device;
+package com.smart.house.app.dto.device.request;
 
 
 import com.smart.house.app.entity.SmartDeviceType;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class SmartDeviceResponseDto {
+public class SmartDeviceRequestDto {
 
     private String name;
 

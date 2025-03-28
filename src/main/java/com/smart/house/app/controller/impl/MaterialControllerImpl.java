@@ -2,21 +2,17 @@ package com.smart.house.app.controller.impl;
 
 
 import com.smart.house.app.controller.MaterialController;
-import com.smart.house.app.dto.material.MaterialRequestDto;
-import com.smart.house.app.dto.material.MaterialResponseDto;
-import com.smart.house.app.dto.smartDeviceType.SmartDeviceTypeResponseDto;
+import com.smart.house.app.dto.material.request.MaterialRequestDto;
+import com.smart.house.app.dto.material.response.MaterialResponseDto;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.exception.CustomMaterialException;
 import com.smart.house.app.service.MaterialService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -98,6 +94,7 @@ public class MaterialControllerImpl implements MaterialController {
     }
 
     @Override
+    @GetMapping
     public ResponseEntity<?> getAllMaterials() {
         log.info("Получен запрос на получение всех материалов");
         try {

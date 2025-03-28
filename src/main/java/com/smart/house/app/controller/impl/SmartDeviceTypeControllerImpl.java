@@ -1,12 +1,10 @@
 package com.smart.house.app.controller.impl;
 
 import com.smart.house.app.controller.SmartDeviceTypeController;
-import com.smart.house.app.dto.material_type.MaterialTypeResponseDto;
-import com.smart.house.app.dto.smartDeviceType.SmartDeviceTypeRequestDto;
-import com.smart.house.app.dto.smartDeviceType.SmartDeviceTypeResponseDto;
+import com.smart.house.app.dto.smartDeviceType.request.SmartDeviceTypeRequestDto;
+import com.smart.house.app.dto.smartDeviceType.response.SmartDeviceTypeResponseDto;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.service.SmartDeviceTypeService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -95,6 +93,7 @@ public class SmartDeviceTypeControllerImpl implements SmartDeviceTypeController 
     }
 
     @GetMapping
+    @Override
     public ResponseEntity<?> getAllSmartDeviceTypes() {
         log.info("Получен запрос на получение всех типов устройств");
         try {

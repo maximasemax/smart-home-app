@@ -1,4 +1,4 @@
-package com.smart.house.app.dto.material_type;
+package com.smart.house.app.dto.material_type.request;
 
 import lombok.Builder;
 import lombok.Getter;

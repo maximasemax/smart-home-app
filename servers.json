@@ -1,0 +1,15 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Postgres Smart Home",
+      "Group": "Servers",
+      "Host": "postgres",
+      "Port": 5432,
+      "MaintenanceDB": "smart_home_db",
+      "Username": "postgres",
+      "Password": "postgres",
+      "SSLMode": "prefer",
+      "ConnectNow": true
+    }
+  }
+}

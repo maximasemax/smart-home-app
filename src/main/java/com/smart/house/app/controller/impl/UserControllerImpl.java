@@ -1,11 +1,10 @@
 package com.smart.house.app.controller.impl;
 
 import com.smart.house.app.controller.UserController;
-import com.smart.house.app.dto.user.UserRequestDto;
-import com.smart.house.app.dto.user.UserResponseDto;
+import com.smart.house.app.dto.user.request.UserRequestDto;
+import com.smart.house.app.dto.user.response.UserResponseDto;
 import com.smart.house.app.exception.CustomEntityNotFoundException;
 import com.smart.house.app.service.UserService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
