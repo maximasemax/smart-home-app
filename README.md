@@ -19,3 +19,8 @@ http://localhost:8080/swagger-ui/index.html
 
 Logs:
 smart-home-app\logs
+
+PgAdmin:
+http://localhost:5050
+email: admin@admin.com
+password: admin
